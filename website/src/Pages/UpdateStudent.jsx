@@ -21,7 +21,7 @@ const UpdateStudent = () => {
 
   const fetchStudentData = async () => {
     try {
-      const response = await fetch(`http://localhost:8000/students/${id}`);
+      const response = await fetch(`http://localhost:5000/students/${id}`);
       const data = await response.json();
       setFormData({
         name: data.name,
@@ -40,7 +40,7 @@ const UpdateStudent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:8000/students/${id}`, {
+      const response = await fetch(`http://localhost:5000/students/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

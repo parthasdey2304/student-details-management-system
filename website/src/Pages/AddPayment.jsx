@@ -19,7 +19,7 @@ const AddPayment = () => {
 
   const fetchStudents = async () => {
     try {
-      const response = await fetch('http://localhost:8000/dashboard/');
+      const response = await fetch('http://localhost:5000/dashboard');
       const data = await response.json();
       setStudents(data);
     } catch (error) {
@@ -30,7 +30,7 @@ const AddPayment = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8000/payments/', {
+      const response = await fetch('http://localhost:5000/payments', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

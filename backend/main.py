@@ -61,6 +61,10 @@ def send_payment_sms(phone, student_name, amount, month):
         print(f"SMS sending failed: {str(e)}")
         return None
 
+@app.errorhandler(500)
+def internal_error(error):
+    return jsonify({'error': 'Internal server error'}), 500
+
 @app.route('/students', methods=['GET'])
 def get_all_students():
     conn = sqlite3.connect('tuition.db')

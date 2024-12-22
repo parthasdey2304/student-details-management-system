@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const response = await fetch('http://localhost:8000/dashboard/');
+      const response = await fetch('http://localhost:5000/dashboard');
       const data = await response.json();
       setStudents(data);
     } catch (error) {
