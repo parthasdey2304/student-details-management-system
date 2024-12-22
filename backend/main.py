@@ -166,6 +166,32 @@ def update_student(student_id):
         conn.close()
         return jsonify({'error': str(e)}), 400
 
+@app.route('/students/<int:student_id>', methods=['DELETE'])
+def delete_student(student_id):
+    conn = sqlite3.connect('tuition.db')
+    c = conn.cursor()
+    
+    try:
+        # First check if student exists
+        c.execute('SELECT id FROM students WHERE id = ?', (student_id,))
+        student = c.fetchone()
+        
+        if not student:
+            return jsonify({'error': 'Student not found'}), 404
+            
+        # Delete specific student and their payments
+        c.execute('DELETE FROM payments WHERE student_id = ?', (student_id,))
+        c.execute('DELETE FROM students WHERE id = ?', (student_id,))
+        
+        conn.commit()
+        return jsonify({'message': 'Student deleted successfully'})
+    except Exception as e:
+        conn.rollback()
+        return jsonify({'error': str(e)}), 400
+    finally:
+        conn.close()
+
+
 @app.route('/payments', methods=['POST'])
 def add_payment():
     data = request.json
