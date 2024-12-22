@@ -117,12 +117,12 @@ def add_student():
             INSERT INTO students (name, parent_name, phone, fees, class_name, subjects, join_date)
             VALUES (?, ?, ?, ?, ?, ?, ?)
         ''', (
-            data['name'],
-            data['parent_name'],
-            data['phone'],
-            data['fees'],
-            data['class_name'],
-            data['subjects'],
+            data['name'].upper(),
+            data['parent_name'].upper(),
+            data['phone'].upper(),
+            data['fees'].upper(),
+            data['class_name'].upper(),
+            data['subjects'].upper(),
             date.today().isoformat()
         ))
         
